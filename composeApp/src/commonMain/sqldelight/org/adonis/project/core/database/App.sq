@@ -1,0 +1,4 @@
+-- Placeholder table. Replace with your actual schema.
+CREATE TABLE IF NOT EXISTS placeholder (
+    id INTEGER PRIMARY KEY
+);
