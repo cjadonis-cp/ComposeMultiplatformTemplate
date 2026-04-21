@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="iosApp" type="KotlinMultiplatformIosRunConfigurationType" factoryName="Kotlin Multiplatform iOS">
+    <option name="selectedTarget" value="iosSimulatorArm64" />
+    <option name="xcodeProjectPath" value="$PROJECT_DIR$/iosApp/iosApp.xcodeproj" />
+    <option name="xcodeSchemeName" value="iosApp" />
+    <option name="xcodeConfiguration" value="Debug" />
+    <module name="ComposeMultiplatformTemplate.composeApp.iosMain" />
+  </configuration>
+</component>
