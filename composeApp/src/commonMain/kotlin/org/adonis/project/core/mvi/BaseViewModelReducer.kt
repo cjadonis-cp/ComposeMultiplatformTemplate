@@ -1,4 +1,4 @@
-package org.adonis.project.core.mvi.statemachine
+package org.adonis.project.core.mvi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<State, Intent, Effect>(initialState: State) : ViewModel() {
+abstract class BaseViewModelReducer<State, Intent, Effect>(initialState: State) : ViewModel() {
 
     private val _state = MutableStateFlow(initialState)
     val state: StateFlow<State> = _state.asStateFlow()
@@ -18,11 +18,13 @@ abstract class BaseViewModel<State, Intent, Effect>(initialState: State) : ViewM
     private val _effect = Channel<Effect>(Channel.BUFFERED)
     val effect: Flow<Effect> = _effect.receiveAsFlow()
 
-    fun handle(intent: Intent) {
-        val (newState, newEffect) = transition(_state.value, intent)
-        _state.value = newState
-        newEffect?.let { viewModelScope.launch { _effect.send(it) } }
+    fun dispatch(intent: Intent) {
+        _state.value = reduce(_state.value, intent)
     }
 
-    protected abstract fun transition(state: State, intent: Intent): Pair<State, Effect?>
+    protected abstract fun reduce(state: State, intent: Intent): State
+
+    protected fun emitEffect(effect: Effect) {
+        viewModelScope.launch { _effect.send(effect) }
+    }
 }

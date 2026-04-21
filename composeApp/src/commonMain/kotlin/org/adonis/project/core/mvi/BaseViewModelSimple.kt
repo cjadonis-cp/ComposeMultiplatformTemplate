@@ -1,11 +1,11 @@
-package org.adonis.project.core.mvi.pure
+package org.adonis.project.core.mvi
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-abstract class BaseViewModel<State, Intent>(initialState: State) : ViewModel() {
+abstract class BaseViewModelSimple<State, Intent>(initialState: State) : ViewModel() {
 
     private val _state = MutableStateFlow(initialState)
     val state: StateFlow<State> = _state.asStateFlow()
