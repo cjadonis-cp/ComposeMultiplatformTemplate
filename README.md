@@ -50,7 +50,7 @@ composeApp/src/commonMain/kotlin/org/adonis/project/
 
 - Android Studio or IntelliJ IDEA with KMP plugin
 - Xcode (for iOS)
-- JDK 11+
+- JDK 21 (required for AGP compatibility — use the JDK bundled with Android Studio / IntelliJ IDEA)
 
 ### Build and Run Android
 
